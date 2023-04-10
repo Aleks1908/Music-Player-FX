@@ -5,6 +5,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -27,6 +28,8 @@ public class Controller {
 
     @FXML
     private Slider volumeSlider;
+    @FXML
+    private Label songNameLabel;
 
 
 
@@ -42,6 +45,8 @@ public class Controller {
                 Media media = new Media(files[0].toURI().toString());
                 mediaPlayer = new MediaPlayer(media);
                 mediaView.setMediaPlayer(mediaPlayer);
+                songNameLabel.setText(files[0].getName());
+
 
                 DoubleProperty widthProp = mediaView.fitWidthProperty();
                 DoubleProperty heightProp = mediaView.fitHeightProperty();
@@ -64,6 +69,8 @@ public class Controller {
                 mediaPlayer.setOnReady(() -> {
                     Duration total = media.getDuration();
                     progressBar.setMax(total.toSeconds());
+                    songNameLabel.setText(files[0].getName());
+
                 });
 
                 volumeSlider.setValue(mediaPlayer.getVolume() * 100);
@@ -83,7 +90,10 @@ public class Controller {
                     mediaPlayer.stop();
                     mediaPlayer = new MediaPlayer(nextMedia);
                     mediaView.setMediaPlayer(mediaPlayer);
+                    songNameLabel.setText(files[0].getName());
                     mediaPlayer.play();
+
+
                 });
             }
         }
@@ -96,6 +106,7 @@ public class Controller {
             mediaPlayer.stop();
             mediaPlayer = new MediaPlayer(nextMedia);
             mediaView.setMediaPlayer(mediaPlayer);
+            songNameLabel.setText(files[currentFileIndex].getName());
             mediaPlayer.play();
         }
     }
@@ -107,6 +118,7 @@ public class Controller {
             mediaPlayer.stop();
             mediaPlayer = new MediaPlayer(prevMedia);
             mediaView.setMediaPlayer(mediaPlayer);
+            songNameLabel.setText(files[currentFileIndex].getName());
             mediaPlayer.play();
         }
     }
