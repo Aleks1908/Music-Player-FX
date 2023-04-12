@@ -110,21 +110,6 @@ public class Controller {
             }
         }
     }
-    public void nextMedia(ActionEvent event) {
-
-
-        if (currentFileIndex < files.length - 1) {
-            currentFileIndex++;
-            newSong();
-        }
-    }
-
-    public void prevMedia(ActionEvent event) {
-        if (currentFileIndex > 0) {
-            currentFileIndex--;
-            newSong();
-        }
-    }
 
     private void newSong() {
         Media media = new Media(files[currentFileIndex].toURI().toString());
@@ -155,5 +140,17 @@ public class Controller {
 
     }
 
+    public void nextMedia(ActionEvent event) {
+        if (currentFileIndex < files.length - 1) {
+            currentFileIndex++;
+            newSong();
+        }
+    }
 
+    public void prevMedia(ActionEvent event) {
+        if (currentFileIndex > 0) {
+            currentFileIndex--;
+            newSong();
+        }
+    }
 }
