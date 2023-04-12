@@ -19,9 +19,9 @@
           <children>
             <VBox prefHeight="107.0" prefWidth="509.0">
               <children>
-                        <Label fx:id="songNameLabel" prefHeight="35.0" prefWidth="509.0" text="Song Name" />
-                        <Label fx:id="currentSecond" text="Label" />
-                        <Label fx:id="songLength" text="Label" />
+                        <Label fx:id="songNameLabel" prefHeight="35.0" prefWidth="509.0" text="Please select a folder that contains mp3/mp4/wav files" />
+                        <Label fx:id="currentSecond" text="00:00" />
+                        <Label fx:id="songLength" text="00:00" />
               </children>
             </VBox>
             <Slider fx:id="progressBar" />
@@ -45,22 +45,6 @@
                   </HBox.margin>
                 </Button>
                 <Button mnemonicParsing="false" onAction="#nextMedia" text="next" />
-                <Button mnemonicParsing="false" onAction="#slowRate" text="&lt;&lt;&lt;">
-                  <opaqueInsets>
-                    <Insets />
-                  </opaqueInsets>
-                  <HBox.margin>
-                    <Insets left="7.0" right="7.0" />
-                  </HBox.margin>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#fastRate" text="&gt;&gt;&gt;">
-                  <opaqueInsets>
-                    <Insets />
-                  </opaqueInsets>
-                  <HBox.margin>
-                    <Insets left="7.0" right="7.0" />
-                  </HBox.margin>
-                </Button>
                 <Slider fx:id="volumeSlider" orientation="VERTICAL" />
               </children>
             </HBox>

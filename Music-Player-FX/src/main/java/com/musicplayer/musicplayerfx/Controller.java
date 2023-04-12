@@ -40,6 +40,13 @@ public class Controller {
     private File[] files;
     private int currentFileIndex = 0;
 
+    private String formatDuration(Duration duration) {
+        int seconds = (int) duration.toSeconds();
+        int minutes = seconds / 60;
+        seconds %= 60;
+        return String.format("%02d:%02d", minutes, seconds);
+    }
+
     public void chooseFileMethod(ActionEvent event) {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File folder = directoryChooser.showDialog(null);
@@ -59,7 +66,7 @@ public class Controller {
 
                 mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
                     progressBar.setValue(newValue.toSeconds());
-                    currentSecond.setText(String.valueOf((int) newValue.toSeconds()));
+                    currentSecond.setText(formatDuration(newValue));
                 });
 
                 progressBar.setOnMousePressed(e -> {
@@ -74,7 +81,7 @@ public class Controller {
                     Duration total = media.getDuration();
                     progressBar.setMax(total.toSeconds());
                     songNameLabel.setText(files[0].getName());
-                    songLength.setText(String.valueOf((int) total.toSeconds()));
+                    songLength.setText(formatDuration(total));
 
                 });
 
@@ -108,53 +115,34 @@ public class Controller {
 
         if (currentFileIndex < files.length - 1) {
             currentFileIndex++;
-
-            Media media = new Media(files[currentFileIndex].toURI().toString());
-            mediaPlayer.stop();
-            mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.setOnReady(() -> {
-                Duration total = media.getDuration();
-                progressBar.setMax(total.toSeconds());
-                songNameLabel.setText(files[0].getName());
-                songLength.setText(String.valueOf((int) total.toSeconds()));
-                mediaView.setMediaPlayer(mediaPlayer);
-                songNameLabel.setText(files[currentFileIndex].getName());
-                mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
-                    progressBar.setValue(newValue.toSeconds());
-                    currentSecond.setText(String.valueOf((int) newValue.toSeconds()));
-                });
-                mediaPlayer.play();
-
-            });
-
-
-
-
+            newSong();
         }
     }
 
     public void prevMedia(ActionEvent event) {
         if (currentFileIndex > 0) {
             currentFileIndex--;
-
-            Media media = new Media(files[currentFileIndex].toURI().toString());
-            mediaPlayer.stop();
-            mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.setOnReady(() -> {
-                Duration total = media.getDuration();
-                progressBar.setMax(total.toSeconds());
-                songNameLabel.setText(files[0].getName());
-                songLength.setText(String.valueOf((int) total.toSeconds()));
-                mediaView.setMediaPlayer(mediaPlayer);
-                songNameLabel.setText(files[currentFileIndex].getName());
-                mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
-                    progressBar.setValue(newValue.toSeconds());
-                    currentSecond.setText(String.valueOf((int) newValue.toSeconds()));
-                });
-                mediaPlayer.play();
-
-            });
+            newSong();
         }
+    }
+
+    private void newSong() {
+        Media media = new Media(files[currentFileIndex].toURI().toString());
+        mediaPlayer.stop();
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setOnReady(() -> {
+            Duration total = media.getDuration();
+            progressBar.setMax(total.toSeconds());
+            songNameLabel.setText(files[0].getName());
+            songLength.setText(formatDuration(total));
+            mediaView.setMediaPlayer(mediaPlayer);
+            songNameLabel.setText(files[currentFileIndex].getName());
+            mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+                progressBar.setValue(newValue.toSeconds());
+                currentSecond.setText(formatDuration(newValue));
+            });
+            mediaPlayer.play();
+        });
     }
 
     public void play(ActionEvent event) {
@@ -165,12 +153,6 @@ public class Controller {
             mediaPlayer.setRate(1);
         }
 
-    }
-    public void slowRate(ActionEvent event){
-        mediaPlayer.setRate(0.5);
-    }
-    public void fastRate(ActionEvent event){
-        mediaPlayer.setRate(1.5);
     }
 
 
