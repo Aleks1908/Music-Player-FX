@@ -14,14 +14,14 @@
   <center>
     <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       <children>
-        <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" />
+        <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" mouseTransparent="true" />
         <VBox alignment="BOTTOM_CENTER" prefHeight="637.0" prefWidth="554.0">
           <children>
             <VBox prefHeight="107.0" prefWidth="509.0">
               <children>
-                <Button mnemonicParsing="false" onAction="#nextMedia" text="next" />
-                <Button mnemonicParsing="false" onAction="#prevMedia" text="prev" />
-                        <Label fx:id="songNameLabel" prefHeight="35.0" prefWidth="509.0" text="Label" />
+                        <Label fx:id="songNameLabel" prefHeight="35.0" prefWidth="509.0" text="Song Name" />
+                        <Label fx:id="currentSecond" text="Label" />
+                        <Label fx:id="songLength" text="Label" />
               </children>
             </VBox>
             <Slider fx:id="progressBar" />
@@ -35,6 +35,7 @@
                     <Insets left="7.0" right="7.0" />
                   </HBox.margin>
                 </Button>
+                <Button mnemonicParsing="false" onAction="#prevMedia" text="prev" />
                 <Button mnemonicParsing="false" onAction="#play" text="Play">
                   <opaqueInsets>
                     <Insets />
@@ -43,22 +44,7 @@
                     <Insets left="7.0" right="7.0" />
                   </HBox.margin>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#pause" text="Pause">
-                  <opaqueInsets>
-                    <Insets />
-                  </opaqueInsets>
-                  <HBox.margin>
-                    <Insets left="7.0" right="7.0" />
-                  </HBox.margin>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#stop" text="Stop">
-                  <opaqueInsets>
-                    <Insets />
-                  </opaqueInsets>
-                  <HBox.margin>
-                    <Insets left="7.0" right="7.0" />
-                  </HBox.margin>
-                </Button>
+                <Button mnemonicParsing="false" onAction="#nextMedia" text="next" />
                 <Button mnemonicParsing="false" onAction="#slowRate" text="&lt;&lt;&lt;">
                   <opaqueInsets>
                     <Insets />
@@ -68,22 +54,6 @@
                   </HBox.margin>
                 </Button>
                 <Button mnemonicParsing="false" onAction="#fastRate" text="&gt;&gt;&gt;">
-                  <opaqueInsets>
-                    <Insets />
-                  </opaqueInsets>
-                  <HBox.margin>
-                    <Insets left="7.0" right="7.0" />
-                  </HBox.margin>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#backwards" text="-10">
-                  <opaqueInsets>
-                    <Insets />
-                  </opaqueInsets>
-                  <HBox.margin>
-                    <Insets left="7.0" right="7.0" />
-                  </HBox.margin>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#forward" text="+10">
                   <opaqueInsets>
                     <Insets />
                   </opaqueInsets>
