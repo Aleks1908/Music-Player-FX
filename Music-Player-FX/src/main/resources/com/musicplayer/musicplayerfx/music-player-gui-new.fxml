@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="756.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musicplayer.musicplayerfx.Controller">
+   <children>
+      <BorderPane layoutX="14.0" layoutY="14.0" prefHeight="678.0" prefWidth="1220.0" styleClass="body-background" stylesheets="@../../../style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <StackPane prefHeight="689.0" prefWidth="1220.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="319.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../icons/music-icon.png" />
+                     </image>
+                  </ImageView>
+                  <MediaView fx:id="mediaView" fitHeight="600.0" fitWidth="1000.0" StackPane.alignment="CENTER" />
+               </children>
+            </StackPane>
+         </center>
+      </BorderPane>
+      <HBox alignment="CENTER_LEFT" layoutX="65.0" layoutY="606.0" maxHeight="176.0" prefHeight="78.0" prefWidth="1220.0" styleClass="bottom_bar_color" stylesheets="@../../../style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER" maxHeight="100.0" prefHeight="17.0" prefWidth="50.0" styleClass="menu-bar-background" stylesheets="@../../../style.css">
+               <children>
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#chooseFileMethod" prefHeight="50.0" prefWidth="50.0" styleClass="transparent" stylesheets="@../../../style.css">
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="66.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/icons8-import-96.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#prevMedia" prefHeight="50.0" prefWidth="50.0" styleClass="transparent" stylesheets="@../../../style.css">
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="46.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../icons/prev.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#play" prefHeight="50.0" prefWidth="50.0" styleClass="transparent" stylesheets="@../../../style.css">
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="46.0" nodeOrientation="INHERIT" onDragDetected="#play" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../icons/play.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#nextMedia" prefHeight="50.0" prefWidth="50.0" styleClass="transparent" stylesheets="@../../../style.css">
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="46.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../icons/next.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="currentSecond" alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="37.0" text="00:00" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="15.0" right="5.0" />
+               </HBox.margin>
+            </Label>
+            <VBox prefHeight="98.0" prefWidth="648.0">
+               <children>
+                  <Label fx:id="songNameLabel" prefHeight="29.0" prefWidth="409.0" text="Please select a folder that contains mp3/mp4/wav files" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Slider fx:id="progressBar" prefHeight="21.0" prefWidth="666.0" />
+               </children>
+            </VBox>
+            <Label fx:id="songLength" alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="36.0" text="00:00" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="3.0" />
+               </HBox.margin>
+            </Label>
+            <Slider fx:id="volumeSlider" prefHeight="16.0" prefWidth="182.0">
+               <HBox.margin>
+                  <Insets left="15.0" />
+               </HBox.margin>
+            </Slider>
+         </children></HBox>
+   </children>
+</AnchorPane>

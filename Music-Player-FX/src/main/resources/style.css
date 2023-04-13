@@ -1,7 +1,16 @@
 .bottom_bar_color{
- -fx-background-color:linear-gradient(from 25% 25% to 100% 100%, #0B1E3E , #4E154C);
+ -fx-background-color:#525252;
 }
 
 .body-background{
- -fx-background-color:linear-gradient(from 25% 25% to 100% 100%, #0B1E3E , #4E154C);
+ -fx-background-color: #212121;
+}
+.menu-bar-background{
+ -fx-background-color: #c4c4c4;
+ -fx-background-radius: 0 15 15 0;
+
+}
+
+.transparent{
+ -fx-background-color: rgba(0,0,0,0);
 }

@@ -8,8 +8,9 @@ package com.musicplayer.musicplayerfx;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("music-player-gui.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 500, 750);
+        FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("music-player-gui-new.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setResizable(false); // set the resizable property to false
         stage.setScene(scene);
         stage.show();
     }
