@@ -100,20 +100,19 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button mnemonicParsing="false" onAction="#playRandomSong" text="Button" />
             <Label fx:id="currentSecond" alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="37.0" text="00:00" textFill="WHITE">
                <HBox.margin>
                   <Insets left="15.0" right="5.0" />
                </HBox.margin>
             </Label>
-            <VBox prefHeight="98.0" prefWidth="648.0">
+            <VBox prefHeight="78.0" prefWidth="603.0">
                <children>
                   <Label fx:id="songNameLabel" prefHeight="29.0" prefWidth="409.0" text="Please select a folder that contains mp3/mp4/wav files" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Slider fx:id="progressBar" prefHeight="21.0" prefWidth="666.0" />
+                  <Slider fx:id="progressBar" prefHeight="21.0" prefWidth="587.0" />
                </children>
             </VBox>
             <Label fx:id="songLength" alignment="TOP_RIGHT" prefHeight="17.0" prefWidth="36.0" text="00:00" textFill="WHITE">
@@ -121,6 +120,21 @@
                   <Insets left="3.0" />
                </HBox.margin>
             </Label>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#playRandomSong" prefHeight="50.0" prefWidth="50.0" styleClass="transparent" stylesheets="@../../../style/style.css">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="46.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../icons/shuffle.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+            </Button>
             <Slider fx:id="volumeSlider" prefHeight="16.0" prefWidth="182.0">
                <HBox.margin>
                   <Insets left="15.0" />
