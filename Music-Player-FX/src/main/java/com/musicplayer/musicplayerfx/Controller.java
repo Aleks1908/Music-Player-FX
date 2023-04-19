@@ -38,6 +38,8 @@ public class Controller {
     private Label songLength;
 
     private File[] files;
+    private File previouslyPlayed;
+
     private int currentFileIndex = 0;
 
     private String formatDuration(Duration duration) {
@@ -153,4 +155,31 @@ public class Controller {
             newSong();
         }
     }
+
+
+    public void playRandomSong() {
+        if (files != null && files.length > 0) {
+            File randomFile;
+            do {
+                // Select a random file from the list of files that is different from the previously played file
+                int randomIndex = (int) (Math.random() * files.length);
+                randomFile = files[randomIndex];
+            } while (randomFile.equals(previouslyPlayed));
+
+            // Create a new Media object from the selected file and stop the current media player
+            Media media = new Media(randomFile.toURI().toString());
+            mediaPlayer.stop();
+
+            // Set up the media player with the new media and start playing it
+            mediaPlayer = new MediaPlayer(media);
+            mediaView.setMediaPlayer(mediaPlayer);
+            songNameLabel.setText(randomFile.getName());
+            mediaPlayer.play();
+
+            // Remember the previously played file
+            previouslyPlayed = randomFile;
+        }
+    }
+
+
 }
