@@ -42,19 +42,12 @@ public class Controller {
 
     private int currentFileIndex = 0;
 
-    private String formatDuration(Duration duration) {
-        int seconds = (int) duration.toSeconds();
-        int minutes = seconds / 60;
-        seconds %= 60;
-        return String.format("%02d:%02d", minutes, seconds);
-    }
-
-    public void chooseFileMethod(ActionEvent event) {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
+    public void chooseFileMethod(ActionEvent event) {               //This function is executed when the user selects valid files and it initializes the mediaPlayer and mediaView
+        DirectoryChooser directoryChooser = new DirectoryChooser(); //it also sets up all the visual elements such as labels and sliders
         File folder = directoryChooser.showDialog(null);
-        if (folder != null) {
+        if (folder != null) {           //here we check the folder for valid files
             files = folder.listFiles((dir, name) -> name.endsWith(".mp3") || name.endsWith(".wav") || name.endsWith(".mp4"));
-            if (files != null && files.length > 0) {
+            if (files != null && files.length > 0) {    //if files are valid we initialize mediaView and mediaPlayer
                 Media media = new Media(files[0].toURI().toString());
                 mediaPlayer = new MediaPlayer(media);
                 mediaView.setMediaPlayer(mediaPlayer);
@@ -66,16 +59,16 @@ public class Controller {
                 widthProp.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
                 heightProp.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
 
-                mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+                mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {     //here we set up a listener for the progressbar and the current second label
                     progressBar.setValue(newValue.toSeconds());
                     currentSecond.setText(formatDuration(newValue));
                 });
 
-                progressBar.setOnMousePressed(e -> {
+                progressBar.setOnMousePressed(e -> {        //here we setup a listener for pressing on the slider so that it can seek to this place in the song
                     mediaPlayer.seek(Duration.seconds(progressBar.getValue()));
                 });
 
-                progressBar.setOnMouseDragged(e -> {
+                progressBar.setOnMouseDragged(e -> {        //here we setup a listener for dragging on the slider so that it can seek to this place in the song
                     mediaPlayer.seek(Duration.seconds(progressBar.getValue()));
                 });
 
@@ -87,14 +80,14 @@ public class Controller {
 
                 });
 
-                volumeSlider.setValue(mediaPlayer.getVolume() * 100);
+                volumeSlider.setValue(mediaPlayer.getVolume() * 100);       //here we setup a listener for the volume slider
                 volumeSlider.valueProperty().addListener((observable) -> {
                     mediaPlayer.setVolume(volumeSlider.getValue() / 100);
                 });
 
                 mediaPlayer.play();
 
-                mediaPlayer.setOnEndOfMedia(() -> {
+                mediaPlayer.setOnEndOfMedia(() -> {     //here it checks when a song ends it automatically plays the next one
                     if (currentFileIndex < files.length - 1) {
                         currentFileIndex++;
                     } else {
@@ -113,7 +106,14 @@ public class Controller {
         }
     }
 
-    private void newSong() {
+    private String formatDuration(Duration duration) {      //this method's main functionality is to format the seconds from the song and fomrat them in the correct way for the label
+        int seconds = (int) duration.toSeconds();
+        int minutes = seconds / 60;
+        seconds %= 60;
+        return String.format("%02d:%02d", minutes, seconds);
+    }
+
+    private void newSong() {        //this method is reliable for playing the next song in the queue
         Media media = new Media(files[currentFileIndex].toURI().toString());
         mediaPlayer.stop();
         mediaPlayer = new MediaPlayer(media);
@@ -132,7 +132,7 @@ public class Controller {
         });
     }
 
-    public void play(ActionEvent event) {
+    public void play(ActionEvent event) {       //this method sets the status of the song
         if (mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
             mediaPlayer.pause();
         } else{
@@ -142,14 +142,14 @@ public class Controller {
 
     }
 
-    public void nextMedia(ActionEvent event) {
+    public void nextMedia(ActionEvent event) {      //this method play next song when the next button is pressed
         if (currentFileIndex < files.length - 1) {
             currentFileIndex++;
             newSong();
         }
     }
 
-    public void prevMedia(ActionEvent event) {
+    public void prevMedia(ActionEvent event) {      //this method play next song when the previous song button is pressed
         if (currentFileIndex > 0) {
             currentFileIndex--;
             newSong();
@@ -157,29 +157,23 @@ public class Controller {
     }
 
 
-    public void playRandomSong() {
+    public void playRandomSong() {              //this method play next song when the shuffle button is pressed
         if (files != null && files.length > 0) {
             File randomFile;
             do {
-                // Select a random file from the list of files that is different from the previously played file
                 int randomIndex = (int) (Math.random() * files.length);
                 randomFile = files[randomIndex];
             } while (randomFile.equals(previouslyPlayed));
 
-            // Create a new Media object from the selected file and stop the current media player
             Media media = new Media(randomFile.toURI().toString());
             mediaPlayer.stop();
 
-            // Set up the media player with the new media and start playing it
             mediaPlayer = new MediaPlayer(media);
             mediaView.setMediaPlayer(mediaPlayer);
             songNameLabel.setText(randomFile.getName());
             mediaPlayer.play();
 
-            // Remember the previously played file
             previouslyPlayed = randomFile;
         }
     }
-
-
 }
