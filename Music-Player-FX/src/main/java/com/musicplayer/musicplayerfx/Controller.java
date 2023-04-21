@@ -98,6 +98,10 @@ public class Controller {
                     mediaPlayer = new MediaPlayer(nextMedia);
                     mediaView.setMediaPlayer(mediaPlayer);
                     songNameLabel.setText(files[0].getName());
+                    mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+                        progressBar.setValue(newValue.toSeconds());
+                        currentSecond.setText(formatDuration(newValue));
+                    });
                     mediaPlayer.play();
 
 
