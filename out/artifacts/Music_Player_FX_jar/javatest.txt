@@ -1,1 +1,0 @@
-java --module-path /Users/aleks4o/Documents/Programming/Music-Player-FX/javafx-sdk-20/lib/ --add-modules javafx.media,javafx.fxml,javafx.controls -jar Music-Player-FX.jar
