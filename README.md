@@ -5,17 +5,17 @@
 1.Make sure to have JavaFX 20 downloaded on your pc
 
 2.Locate JavaFX lib folder from the console on your pc with the following command:
-    ```bash
-        java --module-path  ...(path to javafx)/javafx-sd-20/lib 
-    ``` 
+```bash
+    java --module-path  ...(path to javafx)/javafx-sd-20/lib 
+``` 
 3. Add the required modules for initalizing the project with the following command: 
-    ```bash
-    --add-modules javafx.media,javafx.fxml,javafx.controls
-    ```
+```bash
+--add-modules javafx.media,javafx.fxml,javafx.controls
+```
 4. Start the project from the jar file located in the following folder: 
-    ```bash
-        ...(path to project)/out/artifacts/Music_Player_FX_jar/Music-Player-FX.jar
-    ```
+```bash
+    ...(path to project)/out/artifacts/Music_Player_FX_jar/Music-Player-FX.jar
+```
 
 ## Project description
 
@@ -40,7 +40,7 @@ Media library: The application uses the media library included in JavaFX to hand
 
 ## Implemented classes
 
-    We have implemented two classes. Application class and Controller class. The Application class is responsible for setting up the stage the player is going to be placed in and it loads the FXML file with the styleing of the project. The Controller class is responsible for everything media connected. Importing songs, playing/pausing songs, skipping reversing songs, sliders, labels and media viewer. We also have a FXML file with the whole UI and CSS file for styling some of the elements in the UI.
+We have implemented two classes. Application class and Controller class. The Application class is responsible for setting up the stage the player is going to be placed in and it loads the FXML file with the styleing of the project. The Controller class is responsible for everything media connected. Importing songs, playing/pausing songs, skipping reversing songs, sliders, labels and media viewer. We also have a FXML file with the whole UI and CSS file for styling some of the elements in the UI.
 
 ## Design desicions 
 
