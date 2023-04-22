@@ -4,18 +4,10 @@
 
 1.Make sure to have JavaFX 20 downloaded on your pc
 
-2.Locate JavaFX lib folder from the console on your pc with the following command:
+2.Enter the following command:
 ```bash
-java --module-path  ...(path to javafx)/javafx-sd-20/lib 
-``` 
-3. Add the required modules for initalizing the project with the following command: 
-```bash
---add-modules javafx.media,javafx.fxml,javafx.controls
-```
-4. Start the project from the jar file located in the following folder: 
-```bash
-...(path to project)/out/artifacts/Music_Player_FX_jar/Music-Player-FX.jar
-```
+java --module-path /(path to javafx folder)/javafx-sdk-20/lib/ --add-modules javafx.media,javafx.fxml,javafx.controls -jar /(path to project location)/Music-Player-FX/out/artifacts/Music_Player_FX_jar/Music-Player-FX.jar``` 
+
 
 ## Project description
 
