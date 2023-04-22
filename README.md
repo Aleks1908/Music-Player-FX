@@ -6,8 +6,8 @@
 
 2.Enter the following command:
 ```bash
-java --module-path /(path to javafx folder)/javafx-sdk-20/lib/ --add-modules javafx.media,javafx.fxml,javafx.controls -jar /(path to project location)/Music-Player-FX/out/artifacts/Music_Player_FX_jar/Music-Player-FX.jar``` 
-
+java --module-path /(path to javafx folder)/javafx-sdk-20/lib/ --add-modules javafx.media,javafx.fxml,javafx.controls -jar /(path to project location)/Music-Player-FX/out/artifacts/Music_Player_FX_jar/Music-Player-FX.jar
+``` 
 
 ## Project description
 
