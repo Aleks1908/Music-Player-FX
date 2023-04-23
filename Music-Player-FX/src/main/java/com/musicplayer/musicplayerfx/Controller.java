@@ -1,5 +1,14 @@
-package com.musicplayer.musicplayerfx;
+/**
 
+ * File: Controller.java
+
+ * Author: Aleksanadar Ivanov, Mohamed Ben Yahia
+
+ * Date: 23/04/2023
+
+ */
+
+package com.musicplayer.musicplayerfx;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;

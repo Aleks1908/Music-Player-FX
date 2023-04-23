@@ -1,3 +1,12 @@
+/**
+
+ * File: Controller.java
+
+ * Author: Aleksanadar Ivanov
+
+ * Date: 23/04/2023
+
+ */
 package com.musicplayer.musicplayerfx;
 
         import javafx.fxml.FXMLLoader;
