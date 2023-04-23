@@ -1,12 +1,5 @@
-<!--
-        * File: music-player-gui.fxml
-
-        * Author: Aleksanadar Ivanov, Yane Yanev
-
-        * Date: 23/04/2023
--->
-
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
