@@ -13,6 +13,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
@@ -54,8 +55,16 @@ public class Controller {
     public void chooseFileMethod(ActionEvent event) {               //This function is executed when the user selects valid files and it initializes the mediaPlayer and mediaView
         DirectoryChooser directoryChooser = new DirectoryChooser(); //it also sets up all the visual elements such as labels and sliders
         File folder = directoryChooser.showDialog(null);
+
         if (folder != null) {           //here we check the folder for valid files
             files = folder.listFiles((dir, name) -> name.endsWith(".mp3") || name.endsWith(".wav") || name.endsWith(".mp4"));
+            if(files.length <= 0){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("Alert");
+                String s ="Please select a folder that contains files with one of the following formats: .mp3/.wav/.mp4 ";
+                alert.setContentText(s);
+                alert.show();
+            }
             if (files != null && files.length > 0) {    //if files are valid we initialize mediaView and mediaPlayer
                 Media media = new Media(files[0].toURI().toString());
                 mediaPlayer = new MediaPlayer(media);
